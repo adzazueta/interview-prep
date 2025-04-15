@@ -27,6 +27,7 @@ jobs:
           echo "NEXT_PUBLIC_FIREBASE_APP_ID=${{ secrets.NEXT_PUBLIC_FIREBASE_APP_ID }}" >> .env
           echo "NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID=${{ secrets.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID }}" >> .env
           echo "NEXT_PUBLIC_VAPI_WEB_TOKEN=${{ secrets.NEXT_PUBLIC_VAPI_WEB_TOKEN }}" >> .env
+          echo "NEXT_PUBLIC_VAPI_WORKFLOW_ID=${{ secrets.NEXT_PUBLIC_VAPI_WORKFLOW_ID }}" >> .env
       - name: Build docker image
         run: docker build -t adzazueta/interview-prep .
       - name: Login to docker hub
