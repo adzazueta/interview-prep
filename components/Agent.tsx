@@ -7,6 +7,9 @@ import { useState, useEffect } from 'react';
 // Components
 import Image from 'next/image';
 
+// Actions
+import { createFeedback } from '@/lib/actions/general.actions';
+
 // Utils
 import { vapi } from '@/lib/vapi.sdk';
 import { cn } from '@/lib/utils';
@@ -111,14 +114,13 @@ const Agent = ({ userName, userId, type, interviewId, questions }: AgentProps) =
   }
 
   const handleGenerateFeedback = async (messages: SavedMessage[]) => {
-    console.log('Generate feedback here.');
+    const { success, feedbackId, } = await createFeedback({
+      interviewId: interviewId!,
+      userId: userId!,
+      transcript: messages
+    });
 
-    const { success, id } = {
-      success: true,
-      id: 'feedback-id'
-    };
-
-    if (success && id) {
+    if (success && feedbackId) {
       router.push(`/interview/${interviewId}/feedback`);
     } else {
       console.log('Error saving feedback');
